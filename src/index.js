@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './containers/App/App';
 import Info from './components/Info/Info.js';
 import TimersTable from './components/TimersTable/TimersTable';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -11,8 +11,8 @@ import {syncHistoryWithStore} from 'react-router-redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {applyMiddleware, createStore} from 'redux';
 
-import {Route} from 'react-router-dom';
-import {Router} from 'react-router';
+import {Route, Router} from 'react-router-dom';
+// import {Router} from 'react-router';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import createBrowserHistory from 'history/createBrowserHistory';
