@@ -10,7 +10,6 @@ import {
 } from 'material-ui/Table';
 import {indigo600,blue50,} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
-import Paper from 'material-ui/Paper';
 
 import {Link} from "react-router-dom";
 
