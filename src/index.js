@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './containers/App/App';
-import Info from './components/Info/Info.js';
-import TimersTable from './components/TimersTable/TimersTable';
+import App from './components/App/App';
+import Info from './containers/Info/Info.js';
+import TimersTable from './containers/TimersTable/TimersTable';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import {Provider} from 'react-redux';
