@@ -5,13 +5,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
-import {indigo600,pink700} from 'material-ui/styles/colors';
+import {indigo600,pink700,indigo200} from 'material-ui/styles/colors';
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actionCreators from '../../actions/timers';
 
 import { convertDateToTime } from '../../utils/time';
+import styles from './Timer.css';
 
 
 class Timer extends React.Component{
@@ -78,36 +79,33 @@ class Timer extends React.Component{
                 onClick={this.handleDialogBtn.bind(this)}
             />,
         ];
-
+        const customStyles = {
+            textStyle : { color:indigo600 },
+            inputLabelStyle : { color: indigo200 },
+            inputUnderlineStyle : {color: indigo200},
+            errorTextStyle : {color: pink700}
+        };
         return (
-            <div className="timer">
+            <div className={styles.container}>
                 <TextField
+                    className={styles.textField}
                     value={this.state.timerName}
                     onChange={this.handleTimerName.bind(this)}
                     floatingLabelText="Name of your task"
-                    style={{margin: 'auto',marginBottom:30,color:indigo600}}
-                    underlineStyle={{color:indigo600}}
+                    underlineFocusStyle={customStyles.inputUnderlineStyle}
+                    floatingLabelFocusStyle={customStyles.inputLabelStyle}
+                    inputStyle={customStyles.textStyle}
                 />
                 <Paper
-                    style={{
-                        height: 300,
-                        width: 300,
-                        paddingTop:135,
-                        fontSize: '25px',
-                        margin:'auto',
-                        textAlign: 'center',
-                        display: 'inline-block',
-                        marginBottom: 30,
-                        color:indigo600
-                    }}
+                    className={styles.timerPaper}
                     zDepth={2}
                     circle={true}
                 >
-                    {convertDateToTime(this.state.timerValue)}
+                    <span style={customStyles.textStyle}>{convertDateToTime(this.state.timerValue)}</span>
                 </Paper>
                 <RaisedButton
+                    className={styles.button}
                     label={this.state.timerWorking ? 'Stop' : 'Start'}
-                    style={{marginTop:50,width:100,margin: 'auto'}}
                     labelColor={indigo600}
                     onClick={this.handleTimerBtn.bind(this)}
                 />
@@ -118,7 +116,7 @@ class Timer extends React.Component{
                     modal={false}
                     open={this.state.timerErrorOpen}
                     onRequestClose={this.handleDialogBtn.bind(this)}
-                    titleStyle={{color:pink700}}
+                    titleStyle={customStyles.errorTextStyle}
                 >
                     You are trying close your task without name,enter the title and try again!
                 </Dialog>

@@ -1,0 +1,10 @@
+.container{
+    composes: baseContainer from '../../containers/container.css';
+    padding-bottom: 15px;
+}
+.idColumn{
+    width: 20px;
+}
+.text{
+    font-size: 1.1em !important;
+}

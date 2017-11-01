@@ -8,8 +8,9 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import {indigo600,blue50} from 'material-ui/styles/colors';
+import {indigo600,blue50,} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
+import Paper from 'material-ui/Paper';
 
 import {Link} from "react-router-dom";
 
@@ -18,6 +19,7 @@ import {connect} from 'react-redux';
 import { removeTimer as actionCreator } from '../../actions/timers';
 
 import Graph from '../Graph/Graph';
+import styles from './TimersTable.css';
 import { convertDateToTime } from '../../utils/time';
 
 
@@ -43,12 +45,18 @@ class TimersTable extends React.Component{
 
 
     render(){
+
+        const customStyles = {
+            bodyBackground: {backgroundColor:blue50},
+            textColor: { color: indigo600 }
+        };
+
         return(
-            <div >
-                <Table multiSelectable={false} style={{width:'80%',margin:'auto',marginTop:15}} >
+            <div className={styles.container} >
+                <Table multiSelectable={false}  >
                     <TableHeader adjustForCheckbox={false} displaySelectAll={false} >
                         <TableRow>
-                            <TableHeaderColumn style={{width:20}}>ID</TableHeaderColumn>
+                            <TableHeaderColumn className={styles.idColumn}>ID</TableHeaderColumn>
                             <TableHeaderColumn>Name of task</TableHeaderColumn>
                             <TableHeaderColumn>Time start</TableHeaderColumn>
                             <TableHeaderColumn>Time end</TableHeaderColumn>
@@ -57,20 +65,20 @@ class TimersTable extends React.Component{
                             <TableHeaderColumn />
                         </TableRow>
                     </TableHeader>
-                    <TableBody displayRowCheckbox={false} style={{backgroundColor: blue50}} showRowHover={true}>
+                    <TableBody displayRowCheckbox={false} style={customStyles.bodyBackground} showRowHover={true}>
                         {this.state.timers.map((object,index)=>{
                             return(
-                                <TableRow style={{color: indigo600}} selectable={false} key={index} >
-                                    <TableRowColumn style={{fontSize: '1.1em',width:20}}>{index + 1}</TableRowColumn>
-                                    <TableRowColumn style={{fontSize: '1.1em'}}>{object.timerName}</TableRowColumn>
+                                <TableRow style={customStyles.textColor} selectable={false} key={index} >
+                                    <TableRowColumn className={[styles.text,styles.idColumn].join(' ')}>{index + 1}</TableRowColumn>
+                                    <TableRowColumn className={styles.text}>{object.timerName}</TableRowColumn>
 
-                                    <TableRowColumn style={{fontSize: '1.1em'}}>
+                                    <TableRowColumn className={styles.text}>
                                         {convertDateToTime(new Date(object.timeStart))}
                                     </TableRowColumn>
-                                    <TableRowColumn style={{fontSize: '1.1em'}}>
+                                    <TableRowColumn className={styles.text}>
                                         {convertDateToTime(new Date(object.timeEnd))}
                                     </TableRowColumn>
-                                    <TableRowColumn style={{fontSize: '1.1em'}}>
+                                    <TableRowColumn className={styles.text}>
                                         {convertDateToTime(new Date(object.timeSpend))}
                                     </TableRowColumn>
 

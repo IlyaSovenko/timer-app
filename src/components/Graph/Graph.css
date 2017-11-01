@@ -1,0 +1,4 @@
+.container{
+    composes: baseContainer from '../../containers/container.css';
+    margin-top: 30px;
+}

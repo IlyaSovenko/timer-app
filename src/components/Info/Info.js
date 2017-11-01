@@ -9,52 +9,63 @@ import {Link} from "react-router-dom";
 
 import {connect} from 'react-redux';
 
-import {grey700,blue500} from 'material-ui/styles/colors';
+import {grey700,indigo600} from 'material-ui/styles/colors';
 
+import styles from './Info.css';
 import { convertDateToTime } from '../../utils/time';
+
 
 
 class Info extends React.Component{
     render(){
+        const customStyle={
+            mainTextStyle: {
+                color: indigo600,
+                fontSize: '1.5em'
+            },
+            secondaryTextStyle: {
+                color: grey700,
+                fontSize:'1.1em',
+            },
+        };
         return(
-            <Paper style={{width: '80%',margin: 'auto',marginTop: 15,paddingTop: 5}}>
+            <Paper className={styles.container}>
                 <Link to='/'>
                     <FlatButton
                         label='Back'
                         icon={<ActionBack/>}
-                        primary={true}
-                        style={{marginLeft: 5}}
+                        style={{color: indigo600}}
                     />
                 </Link>
-                <div style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
-                    <Paper style={{width: 100,height:150,margin: 10,textAlign: 'center',paddingTop: 10}}>
-                        <span style={{color:grey700,fontSize:'1.1em'}}>№</span>
-                        <Divider style={{marginLeft: '10%',marginTop: 10,marginBottom: 30,width: '80%'}}/>
-                        <span style={{color: blue500,fontSize: '1.5em',marginTop: 25}}>{this.props.timer.id + 1}</span>
+                <div className={styles.blocksContainer}>
+                    <Paper className={styles.idBlock}>
+                        <span style={customStyle.secondaryTextStyle}>№</span>
+                        <Divider className={styles.divider}/>
+                        <span style={customStyle.mainTextStyle}>{this.props.timer.id + 1}</span>
                     </Paper>
-                    <Paper style={{width: 500,height:150,margin: 10,textAlign: 'center',paddingTop: 10}}>
-                        <span style={{color:grey700,fontSize:'1.1em'}}>Name</span>
-                        <Divider style={{marginLeft: '10%',marginTop: 10,marginBottom: 30,width: '80%'}}/>
-                        <span style={{color: blue500,fontSize: '1.5em',marginTop: 25}}>{this.props.timer.timerName}</span>
+                    <Paper className={styles.nameBlock}>
+                        <span style={customStyle.secondaryTextStyle}>Name</span>
+                        <Divider className={styles.divider}/>
+                        <span style={customStyle.mainTextStyle}>{this.props.timer.timerName}</span>
                     </Paper>
-                    <Paper style={{width: 200,height:150,margin: 10,textAlign: 'center',paddingTop: 10}}>
-                        <span style={{color:grey700,fontSize:'1.1em'}}>Time start</span>
-                        <Divider style={{marginLeft: '10%',marginTop: 10,marginBottom: 30,width: '80%'}}/>
-                        <span style={{color: blue500,fontSize: '1.5em',marginTop: 25}}>
+                    <Paper className={styles.timeBlock} >
+                        <span style={customStyle.secondaryTextStyle}>Time start</span>
+                        <Divider className={styles.divider}/>
+                        <span style={customStyle.mainTextStyle}>
                             {convertDateToTime(new Date(this.props.timer.timeStart))}
                         </span>
                     </Paper>
-                    <Paper style={{width: 200,height:150,margin: 10,textAlign: 'center',paddingTop: 10}}>
-                        <span style={{color:grey700,fontSize:'1.1em'}}>Time end</span>
-                        <Divider style={{marginLeft: '10%',marginTop: 10,marginBottom: 30,width: '80%'}}/>
-                        <span style={{color: blue500,fontSize: '1.5em',marginTop: 25}}>
+                    <Paper className={styles.timeBlock}>
+                        <span style={customStyle.secondaryTextStyle}>Time end</span>
+                        <Divider className={styles.divider}/>
+                        <span style={customStyle.mainTextStyle}>
                             {convertDateToTime(new Date(this.props.timer.timeEnd))}
                         </span>
                     </Paper>
-                    <Paper style={{width: 200,height:150,margin: 10,textAlign: 'center',paddingTop: 10}}>
-                        <span style={{color:grey700,fontSize:'1.1em'}}>Time spend</span>
-                        <Divider style={{marginLeft: '10%',marginTop: 10,marginBottom: 30,width: '80%'}}/>
-                        <span style={{color: blue500,fontSize: '1.5em',marginTop: 25}}>
+                    <Paper className={styles.timeBlock}>
+                        <span style={customStyle.secondaryTextStyle}>Time spend</span>
+                        <Divider className={styles.divider}/>
+                        <span style={customStyle.mainTextStyle}>
                             {convertDateToTime(new Date(this.props.timer.timeSpend))}
                         </span>
                     </Paper>
