@@ -54,9 +54,9 @@ class Graph extends React.Component{
 
         for(let item in timers){
             if(timers[item].timeStart.getHours() === timers[item].timeEnd.getHours()) {
-                dataForGraphic[timers[item].timeStart.getHours()].minutes += timers[item].timeSpend.getMinutes() + Math.round(timers[item].timeSpend.getSeconds()/60*10)/10;
+                dataForGraphic[timers[item].timeStart.getHours()].minutes += timers[item].timeSpend.getMinutes() + Math.round(timers[item].timeSpend.getSeconds()/60);
             }else{
-                dataForGraphic[timers[item].timeStart.getHours()].minutes += 60 - timers[item].timeStart.getMinutes() - Math.round(timers[item].timeStart.getSeconds()/60*10)/10;
+                dataForGraphic[timers[item].timeStart.getHours()].minutes += 60 - timers[item].timeStart.getMinutes() - Math.round(timers[item].timeStart.getSeconds()/60);
                 for(let i = timers[item].timeStart.getHours() + 1; i < timers[item].timeEnd.getHours();i++){
                     dataForGraphic[i].minutes = 60;
                 }

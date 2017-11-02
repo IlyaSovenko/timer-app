@@ -30,7 +30,9 @@ class Timer extends React.Component{
     componentWillMount(){
         if(this.props.timeStart !== 0){
             this.timeStart = new Date(this.props.timeStart);
-            this.setState((prevState,prevProps) => ({timerWorking: true,timerValue: new Date(Date.parse(prevState.timerValue) + (new Date() - new Date(this.props.timeStart)))}));
+            this.setState((prevState,prevProps) => ({
+                timerWorking: true,
+                timerValue: new Date(Date.parse(prevState.timerValue) + (new Date() - new Date(this.props.timeStart)))}));
             this.timer = setInterval(() => {this.setState((prevState) => ({timerValue: new Date(Date.parse(prevState.timerValue)+1000)}))},1000);
         }
     }
