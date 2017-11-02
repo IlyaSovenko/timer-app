@@ -2,12 +2,7 @@ import { ADD_TIMER, REMOVE_TIMER, START_NEW_TIMER, END_NEW_TIMER } from '../cons
 
 
 const initialState = {
-    items: JSON.parse(localStorage.getItem('timers')).filter((item) => {
-        item.timeStart = new Date(item.timeStart);
-        item.timeEnd = new Date(item.timeEnd);
-        item.timeSpend = new Date(item.timeSpend);
-        return true;
-    }) || [],
+    items: JSON.parse(localStorage.getItem('timers')) || [],
     timeStart: JSON.parse(localStorage.getItem('newTimer')) || 0
 };
 

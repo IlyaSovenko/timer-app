@@ -126,7 +126,12 @@ class Timer extends React.Component{
 }
 
 const mapStateToProps = (state) => ({
-    timers: state.timers.items,
+    timers: state.timers.items.filter((item) => {
+        item.timeStart = new Date(item.timeStart);
+        item.timeEnd = new Date(item.timeEnd);
+        item.timeSpend = new Date(item.timeSpend);
+        return true;
+    }),
     timeStart: state.timers.timeStart
 });
 

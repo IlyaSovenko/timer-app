@@ -54,13 +54,13 @@ class Graph extends React.Component{
 
         for(let item in timers){
             if(timers[item].timeStart.getHours() === timers[item].timeEnd.getHours()) {
-                dataForGraphic[timers[item].timeStart.getHours()].minutes += timers[item].timeSpend.getMinutes() + Math.round(timers[item].timeSpend.getSeconds()/60);
+                dataForGraphic[timers[item].timeStart.getHours()].minutes += timers[item].timeSpend.getMinutes() + Math.round(timers[item].timeSpend.getSeconds()/60*10)/10;
             }else{
-                dataForGraphic[timers[item].timeStart.getHours()].minutes += 60 - timers[item].timeStart.getMinutes() - Math.round(timers[item].timeStart.getSeconds()/60);
+                dataForGraphic[timers[item].timeStart.getHours()].minutes += 60 - timers[item].timeStart.getMinutes() - Math.round(timers[item].timeStart.getSeconds()/60*10)/10;
                 for(let i = timers[item].timeStart.getHours() + 1; i < timers[item].timeEnd.getHours();i++){
                     dataForGraphic[i].minutes = 60;
                 }
-                dataForGraphic[timers[item].timeEnd.getHours()].minutes += timers[item].timeEnd.getMinutes() + Math.round(timers[item].timeEnd.getSeconds()/60);
+                dataForGraphic[timers[item].timeEnd.getHours()].minutes += timers[item].timeEnd.getMinutes() + Math.round(timers[item].timeEnd.getSeconds()/60*10)/10;
             }
         }
         this.setState({dataForGraphic});
